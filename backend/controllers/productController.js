@@ -79,25 +79,33 @@ const getProductById = async (req, res) => {
 
 const productsList = async (req, res) => {
   let query = req.query;
-  let { _sort, _page = 1 } = query;
+  let { _sort, _page = 1, brand } = query;
   let Limit = 8;
-
+  _page = Number(_page);
   let Skip = Limit * (_page - 1);
-
+  let queryObject = {};
+  if (brand) {
+    queryObject.brand = brand;
+  } else {
+    delete queryObject.brand;
+  }
+  console.log("queryObject: ", queryObject);
   try {
     let count = await ProductModel.find().countDocuments();
     let totalPages = Math.ceil(count / Limit);
     if (_sort) {
-      let products = await ProductModel.find()
+      let products = await ProductModel.find(queryObject)
         .limit(Limit)
         .skip(Skip)
         .sort({ title: _sort === "asc" ? 1 : -1 });
 
       res.status(200).json({ products, totalPages });
     } else {
-      let products = await ProductModel.find().limit(Limit).skip(Skip);
+      let products = await ProductModel.find(queryObject)
+        .limit(Limit)
+        .skip(Skip);
 
-      res.status(200).json({ products, totalPages });
+      res.status(200).json({ products, totalPages, currentPage: _page });
     }
   } catch (err) {
     res

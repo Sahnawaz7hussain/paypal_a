@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HamburgerIcon, MoonIcon, SearchIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -21,11 +21,20 @@ import {
 } from "@chakra-ui/react";
 import logo from "../assets/perfumate.png";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogoutActionFn } from "../redux/authReducer/authAction";
+import { getCartActionFn } from "../Redux/cartReducer/cartAction";
+import { headerObject } from "../utils/headers";
 
 const Navbar = () => {
+  const dipatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const isAuth = true;
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+  useEffect(() => {
+    dipatch(getCartActionFn());
+  }, [isAuth]);
+
   return (
     <Flex
       w={"100%"}
@@ -114,6 +123,11 @@ const Navbar = () => {
 export default Navbar;
 
 function MenuList1() {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(userLogoutActionFn());
+  };
   return (
     <MenuList>
       <MenuGroup title="Profile">
@@ -124,7 +138,9 @@ function MenuList1() {
       </MenuGroup>
       <MenuDivider />
       <MenuGroup title="Danger">
-        <MenuItem color={"red"}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout} color={"red"}>
+          Logout
+        </MenuItem>
       </MenuGroup>
     </MenuList>
   );
@@ -132,7 +148,12 @@ function MenuList1() {
 
 function MobileMenu() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const isAuth = false;
+  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+
+  const handleLogout = () => {
+    dispatch(userLogoutActionFn());
+  };
   return (
     <MenuList>
       <MenuGroup title="Move to">
@@ -149,13 +170,15 @@ function MobileMenu() {
       <MenuDivider />
       <MenuGroup title="Profile">
         {isAuth ? (
-          <MenuItem color={"red"}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout} color={"red"}>
+            Logout
+          </MenuItem>
         ) : (
           <>
-            <Link to="/user">
+            <Link to="/login">
               <MenuItem>Login</MenuItem>
             </Link>
-            <Link to="/user">
+            <Link to="/signup">
               <MenuItem>Signup</MenuItem>
             </Link>
           </>
