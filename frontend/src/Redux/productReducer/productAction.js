@@ -11,7 +11,7 @@ const getProductActionFn = (payload) => (dispatch) => {
     .then((res) => {
       return dispatch({
         type: types.GET_PRODUCTS_SUCCESS,
-        payload: res.data.products,
+        payload: res.data,
       });
     })
     .catch((err) => {

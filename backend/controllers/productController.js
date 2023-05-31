@@ -80,7 +80,7 @@ const getProductById = async (req, res) => {
 const productsList = async (req, res) => {
   let query = req.query;
   let { _sort, _page = 1, brand } = query;
-  let Limit = 8;
+  let Limit = 9;
   _page = Number(_page);
   let Skip = Limit * (_page - 1);
   let queryObject = {};
@@ -89,17 +89,16 @@ const productsList = async (req, res) => {
   } else {
     delete queryObject.brand;
   }
-  console.log("queryObject: ", queryObject);
   try {
-    let count = await ProductModel.find().countDocuments();
+    let count = await ProductModel.find(queryObject).countDocuments();
     let totalPages = Math.ceil(count / Limit);
     if (_sort) {
       let products = await ProductModel.find(queryObject)
         .limit(Limit)
         .skip(Skip)
-        .sort({ title: _sort === "asc" ? 1 : -1 });
+        .sort({ price: _sort === "asc" ? 1 : _sort === "desc" ? -1 : null });
 
-      res.status(200).json({ products, totalPages });
+      res.status(200).json({ products, totalPages, currentPage: _page });
     } else {
       let products = await ProductModel.find(queryObject)
         .limit(Limit)

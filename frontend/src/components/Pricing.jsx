@@ -7,9 +7,18 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Pricing = () => {
+const Pricing = ({ cart }) => {
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    let newPrice = cart?.cart?.reduce((acc, curr) => {
+      return acc + curr.qty * curr.product.price;
+    }, 0);
+    setTotalPrice(newPrice);
+  });
+
+  console.log("pricing: cart: ", cart, "  totalprice ;", totalPrice);
   return (
     <Stack w={["100%", "30%"]} border={"0px solid blue"}>
       <Heading size={"md"}>Summary</Heading>
@@ -17,12 +26,12 @@ const Pricing = () => {
         <Flex>
           <Text>Estimated</Text>
           <Spacer />
-          <Text>23/05/2023</Text>
+          <Text>{cart?.deliveryDate}</Text>
         </Flex>
         <Flex>
           <Text>Total Products</Text>
           <Spacer />
-          <Text>3</Text>
+          <Text>{cart?.cart?.length}</Text>
         </Flex>
         <Flex>
           <Text>MRP</Text>
@@ -40,7 +49,7 @@ const Pricing = () => {
         <Flex>
           <Heading size={"md"}>Total Amount</Heading>
           <Spacer />
-          <Heading size={"md"}>400</Heading>
+          <Heading size={"md"}>{totalPrice}</Heading>
         </Flex>
       </Stack>
     </Stack>

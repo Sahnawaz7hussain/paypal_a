@@ -8,7 +8,7 @@ const getCartActionFn = () => (dispatch) => {
   return axios
     .get(`${base_url}/cart/get`, { headers: headerObject() })
     .then((res) => {
-      return dispatch({ type: types.GET_CART_SUCCESS, payload: res.data.cart });
+      return dispatch({ type: types.GET_CART_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       return dispatch({
@@ -21,11 +21,11 @@ const getCartActionFn = () => (dispatch) => {
 const postCartActionFn = (data) => (dispatch) => {
   dispatch({ type: types.POST_CART_REQUEST });
   return axios
-    .post(`${base_url}/cart/add`, data)
+    .post(`${base_url}/cart/add`, data, { headers: headerObject() })
     .then((res) => {
       return dispatch({
         type: types.POST_CART_SUCCESS,
-        payload: res.data.payload,
+        payload: res.data,
       });
     })
     .catch((err) => {
@@ -36,14 +36,16 @@ const postCartActionFn = (data) => (dispatch) => {
     });
 };
 
-const updateCartActionFn = (cartId, updateData) => (dispatch) => {
+const updateCartActionFn = (cartId, updateCartData) => (dispatch) => {
   dispatch({ type: types.PATCH_CART_REQUEST });
   return axios
-    .patch(`${base_url}/cart/update/${cartId}`, updateCart)
+    .patch(`${base_url}/cart/update/${cartId}`, updateCartData, {
+      headers: headerObject(),
+    })
     .then((res) => {
       return dispatch({
         type: types.PATCH_CART_SUCCESS,
-        payload: res.data.cart,
+        payload: res.data,
       });
     })
     .catch((err) => {
@@ -57,11 +59,11 @@ const updateCartActionFn = (cartId, updateData) => (dispatch) => {
 const deleteCartActionFn = (cartId) => (dispatch) => {
   dispatch({ type: types.DELETE_CART_REQUEST });
   return axios
-    .delete(`${base_url}/cart/delete/${cartId}`)
+    .delete(`${base_url}/cart/delete/${cartId}`, { headers: headerObject() })
     .then((res) => {
       return dispatch({
         type: types.DELETE_CART_SUCCESS,
-        payload: res.data.cart,
+        payload: res.data,
       });
     })
     .catch((err) => {

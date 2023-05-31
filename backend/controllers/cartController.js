@@ -83,13 +83,23 @@ const updateQtyOfCartItem = async (req, res) => {
 // get all cart item of a particular user.
 const getCartItems = async (req, res) => {
   const userId = req.body.userId;
-  console.log("get cart Called: ", userId);
+  //console.log("get cart Called: ", userId);
   try {
-    const cartItems = await CartModel.find({ user: userId })
-      .populate("product")
-      .populate("user", "email name role");
-    res.status(200).json({ message: "you cart items", cart: cartItems });
-  } catch (err) {}
+    const cartItems = await CartModel.find({ user: userId }).populate(
+      "product"
+    );
+    const responseObject = {
+      message: "you cart items",
+      cart: cartItems,
+    };
+    cartItems.length > 0 &&
+      (responseObject.deliveryDate = getEstimatedDeliveryDate(new Date(), 5));
+    res.status(200).json(responseObject);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Server error Please try again!", err: err.message });
+  }
 };
 
 module.exports = {
@@ -98,3 +108,34 @@ module.exports = {
   updateQtyOfCartItem,
   getCartItems,
 };
+
+function getEstimatedDeliveryDate(currentDate, businessDays) {
+  var date = new Date(currentDate);
+  var count = 0;
+
+  while (count < businessDays) {
+    date.setDate(date.getDate() + 1); // Increment date by one day
+
+    // Check if the current day is a business day (Monday to Friday)
+    if (date.getDay() !== 0 && date.getDay() !== 6) {
+      count++;
+    }
+  }
+
+  var day = date.getDate();
+  var month = date.getMonth() + 1; // Months are zero-based
+  var year = date.getFullYear();
+
+  // Format day and month with leading zeros if necessary
+  var formattedDay = day < 10 ? "0" + day : day;
+  var formattedMonth = month < 10 ? "0" + month : month;
+
+  return formattedDay + "/" + formattedMonth + "/" + year;
+}
+
+// // Example usage:
+// var currentDate = new Date(); // Current date
+// var businessDays = 5; // Number of business days
+
+// var estimatedDeliveryDate = getEstimatedDeliveryDate(currentDate, businessDays);
+// console.log(estimatedDeliveryDate);

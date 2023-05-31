@@ -1,6 +1,5 @@
 import {
   Badge,
-  Box,
   Flex,
   Heading,
   IconButton,
@@ -13,7 +12,14 @@ import React from "react";
 import { MdDelete } from "react-icons/md";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-const CartCard = () => {
+const CartCard = ({
+  _id,
+  qty,
+  product,
+  handleOnClickDeleteCartItem,
+  handleOnClickUpdateCartQty,
+}) => {
+  //console.log("cart card: ", product);
   return (
     <Stack
       direction={["column", "column", "row"]}
@@ -22,24 +28,19 @@ const CartCard = () => {
       boxSizing="border-box"
       p={2}
     >
-      <Image
-        w={["100%", "200px"]}
-        src={
-          "https://images.unsplash.com/photo-1523293182086-7651a899d37f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyZnVtZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-        }
-      />
+      <Image w={["100%", "200px"]} src={product?.imgUrl} />
       <Stack>
-        <Heading size={["sm", "md", "md"]}>Bleu ed Chanel</Heading>
+        <Heading size={["sm", "sm", "sm"]}>{product?.title}</Heading>
         <Badge
           colorScheme="green"
           w={"fit-content"}
           textTransform={"uppercase"}
         >
-          Brand
+          {product?.brand}
         </Badge>
         <Spacer />
         <Heading size={"sm"} fontWeight={"bold"}>
-          ₹ 500
+          ₹ {product?.price}
         </Heading>
       </Stack>
       <Spacer />
@@ -51,6 +52,7 @@ const CartCard = () => {
         >
           <IconButton
             variant={"outline"}
+            onClick={() => handleOnClickDeleteCartItem(_id)}
             colorScheme="red"
             icon={<MdDelete fontSize={21} color="red" />}
           />
@@ -62,9 +64,18 @@ const CartCard = () => {
           justifyContent={"center"}
           gap={3}
         >
-          <IconButton variant={"link"} icon={<AiOutlineMinus />} />
-          <Text>2</Text>
-          <IconButton variant={"link"} icon={<AiOutlinePlus />} />
+          <IconButton
+            isDisabled={qty <= 1}
+            onClick={() => handleOnClickUpdateCartQty(_id, Number(qty) - 1)}
+            variant={"link"}
+            icon={<AiOutlineMinus />}
+          />
+          <Text>{qty}</Text>
+          <IconButton
+            onClick={() => handleOnClickUpdateCartQty(_id, Number(qty) + 1)}
+            variant={"link"}
+            icon={<AiOutlinePlus />}
+          />
         </Flex>
       </Stack>
     </Stack>

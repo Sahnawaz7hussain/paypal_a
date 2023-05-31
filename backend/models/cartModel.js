@@ -13,6 +13,7 @@ const CartSchema = new mongoose.Schema(
       required: [true, "Product id can't be empty!"],
     },
     qty: { type: Number, default: 1 },
+    deliveryDate: { type: String },
   },
   { versionKey: false }
 );

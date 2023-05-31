@@ -8,28 +8,8 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
-const Filter = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [brand, setBrand] = useState(searchParams.getAll("Brand") || null);
-  const [sort, setSort] = useState(searchParams.get("_sort") || null);
-
-  const handleOnChangeBrand = (e) => {
-    setBrand(e);
-  };
-  const handleRadioSort = (e) => {
-    setSort(e);
-  };
-  useEffect(() => {
-    let queryParams = {};
-    brand.length > 0 && (queryParams.Brand = brand);
-    sort && (queryParams._sort = sort);
-    sort === "null" && delete queryParams._sort;
-    setSearchParams(queryParams);
-  }, [brand, sort]);
-
+const Filter = ({ handleOnChangeBrand, handleRadioSort, brand, sort }) => {
   return (
     <Box w={"250px"} position={"sticky"} top={0}>
       <Heading size={["sm", "md", "md"]} mb={2}>

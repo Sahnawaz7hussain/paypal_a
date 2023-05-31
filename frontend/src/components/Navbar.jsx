@@ -31,10 +31,12 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const cartData = useSelector((state) => state.cartReducer.cart);
   useEffect(() => {
     dipatch(getCartActionFn());
   }, [isAuth]);
 
+  //console.log("navBar: ", cartData);
   return (
     <Flex
       w={"100%"}
@@ -78,7 +80,7 @@ const Navbar = () => {
             display={["none", "block", "block"]}
             color={useColorModeValue("white", "white")}
           >
-            {`Cart(${2})`}
+            {`Cart(${cartData?.cart?.length || 0})`}
           </Text>
         </Link>
         <Box display={["none", "block", "block"]}>
@@ -150,6 +152,7 @@ function MobileMenu() {
   const { colorMode, toggleColorMode } = useColorMode();
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const cartData = useSelector((state) => state.cartReducer);
 
   const handleLogout = () => {
     dispatch(userLogoutActionFn());
@@ -161,7 +164,7 @@ function MobileMenu() {
           <MenuItem>Products</MenuItem>
         </Link>
         <Link to="/cart">
-          <MenuItem>Cart({`${2}`})</MenuItem>
+          <MenuItem>Cart({`${cartData?.cart?.length || 0}`})</MenuItem>
         </Link>
         <Link to="/orders">
           <MenuItem>My Orders</MenuItem>
