@@ -21,7 +21,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogoutActionFn } from "../Redux/authReducer/authAction";
 import { getCartActionFn } from "../Redux/cartReducer/cartAction";
-import { headerObject } from "../utils/headers";
 
 const Navbar = () => {
   const dipatch = useDispatch();
