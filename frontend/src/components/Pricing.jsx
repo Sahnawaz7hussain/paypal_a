@@ -36,7 +36,7 @@ const Pricing = ({ cart }) => {
         <Flex>
           <Text>MRP</Text>
           <Spacer />
-          <Text>200</Text>
+          <Text>{totalPrice}</Text>
         </Flex>
         <Flex>
           <Text>Delivery Fee</Text>
