@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HamburgerIcon, MoonIcon, SearchIcon, SunIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -22,7 +22,7 @@ import {
 import logo from "../assets/perfumate.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogoutActionFn } from "../redux/authReducer/authAction";
+import { userLogoutActionFn } from "../Redux/authReducer/authAction";
 import { getCartActionFn } from "../Redux/cartReducer/cartAction";
 import { headerObject } from "../utils/headers";
 
