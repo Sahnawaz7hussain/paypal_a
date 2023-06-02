@@ -50,7 +50,7 @@ const Home = () => {
 
   const bestSellers = [
     {
-      _id: "6471f32b872f3c1a6d717a68",
+      _id: "647a04dd55005266a0b7ad7f",
       title: "Chanel Coco Mademoiselle",
       price: 150,
       brand: "Chanel",
@@ -58,7 +58,7 @@ const Home = () => {
         "https://cdn.shopify.com/s/files/1/0534/6279/4417/products/chanel-coco-mademoiselle_669x669.png",
     },
     {
-      _id: "6471f32b872f3c1a6d717a83",
+      _id: "647a04dd55005266a0b7ad9a",
       title: "NAUTICA Aua Rush Toilette",
       price: 2800,
       brand: "Nautica",
@@ -66,7 +66,7 @@ const Home = () => {
         "https://rukminim1.flixcart.com/image/416/416/xif0q/perfume/k/5/q/-original-imaggavzpduzhse6.jpeg",
     },
     {
-      _id: "6471f32b872f3c1a6d717a6e",
+      _id: "647a04dd55005266a0b7ad85",
       title: "Gucci Guilty",
       price: 120,
       brand: "Gucci",
@@ -74,7 +74,7 @@ const Home = () => {
         "https://cdn.shopify.com/s/files/1/0305/1601/9337/products/142414_img-5819-givenchy-l-interdit-2020-eau-de-parfum-intense_720_1024x1024.jpg",
     },
     {
-      _id: "6471f32b872f3c1a6d717a80",
+      _id: "647a04dd55005266a0b7ad97",
       title: "Nautica Voyage",
       price: 100,
       brand: "Nautica",

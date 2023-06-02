@@ -62,7 +62,6 @@ export default function Login() {
     }
     dispatch(userLoginActionFn(userData))
       .then((res) => {
-        console.log("LOGIN: ", res);
         if (res.type === "USER_LOGIN_SUCCESS") {
           toast({
             title: "Login Status",
