@@ -23,7 +23,7 @@ app.use("/user", userRouter);
 app.use("/cart", Authentication, cartRouter);
 app.use("/product", productRouter);
 app.use("/address", Authentication, addressRouter);
-app.use("/order", orderRouter);
+app.use("/order", Authentication, orderRouter);
 
 // LISTENING TO SERVER
 app.listen(PORT, async () => {

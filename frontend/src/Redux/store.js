@@ -11,12 +11,16 @@ import thunk from "redux-thunk";
 import { authReducer } from "./authReducer/authReducer";
 import { productReducer } from "./productReducer/productReducer";
 import { cartReducer } from "./cartReducer/cartReducer";
+import { addressReducer } from "./addressReducer/addressReducer";
+import { orderReducer } from "./orderReducer/orderReducer";
 
 // rootRedicer
 const rootReducer = combineReducers({
   authReducer,
   productReducer,
   cartReducer,
+  addressReducer,
+  orderReducer,
 });
 
 // set up redux devtool extension

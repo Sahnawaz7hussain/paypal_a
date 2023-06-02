@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Heading, Stack, useToast } from "@chakra-ui/react";
+import { Container, Heading, Stack, Text, useToast } from "@chakra-ui/react";
 import ProductsList from "../components/Products/Products";
 import Filter from "../components/Products/Filter";
 
@@ -10,6 +10,7 @@ import {
   getCartActionFn,
   postCartActionFn,
 } from "../Redux/cartReducer/cartAction";
+import Loading from "../components/Loading";
 
 const Products = () => {
   const location = useLocation();
@@ -99,7 +100,20 @@ const Products = () => {
   return (
     <>
       {isLoading ? (
-        <Heading size={"2xl"}> Loading....</Heading>
+        <>
+          <Loading />
+        </>
+      ) : isError ? (
+        <>
+          <Container
+            h={"250px"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Text color={"red"}>Error occured to fetching data</Text>
+          </Container>
+        </>
       ) : (
         <Stack
           direction={"row"}

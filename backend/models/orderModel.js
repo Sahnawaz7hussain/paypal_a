@@ -12,11 +12,20 @@ const orderSchema = new mongoose.Schema(
       ref: "product",
       required: [true, "Product id can't be empty!"],
     },
-    qty: { type: Number, default: 1 },
+    address: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "address",
+      required: [true, "Address id can't be empty!"],
+    },
+
+    qty: { type: Number, required: [true, "Product qty can't be empty!"] },
     status: { type: String, default: "Pending" },
-    date: { type: Date, default: Date.now() },
+    deliveryAt: {
+      type: String,
+      required: [true, "Delivery Date Can't be empty"],
+    },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 const OrderModel = mongoose.model("order", orderSchema);

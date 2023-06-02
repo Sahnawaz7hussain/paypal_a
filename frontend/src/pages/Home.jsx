@@ -158,7 +158,7 @@ const Home = () => {
         Best Sellers
       </Text>
       <SimpleGrid
-        columns={[1, 2, 4]}
+        columns={[1, 2, 2, 4]}
         w={"100%"}
         m={"auto"}
         mb={20}

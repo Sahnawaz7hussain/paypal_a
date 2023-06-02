@@ -30,13 +30,13 @@ const Navbar = () => {
   const dipatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const userData = useSelector((state) => state.authReducer);
   const cartData = useSelector((state) => state.cartReducer.cart);
   useEffect(() => {
     dipatch(getCartActionFn());
-  }, [isAuth]);
+  }, [userData?.isAuth]);
 
-  //console.log("navBar: ", cartData);
+  //console.log("navBar: ", userData);
   return (
     <Flex
       w={"100%"}
@@ -60,13 +60,23 @@ const Navbar = () => {
         />
       </Link>
 
-      <Box w={["65%", "40%", "40%"]}>
+      {/* <Box w={["65%", "40%", "40%"]}>
         <InputGroup>
           <InputLeftElement children={<SearchIcon color="gray.300" />} />
           <Input type="text" placeholder="Search here" />
         </InputGroup>
-      </Box>
+      </Box> */}
       <Flex alignItems={"center"} gap={"1rem"}>
+        {userData?.user?.role === "admin" && (
+          <Link to="/admindashboard">
+            <Text
+              display={["none", "block", "block"]}
+              color={useColorModeValue("white", "white")}
+            >
+              Dashboard
+            </Text>
+          </Link>
+        )}
         <Link to="/products">
           <Text
             display={["none", "block", "block"]}
@@ -85,7 +95,7 @@ const Navbar = () => {
         </Link>
         <Box display={["none", "block", "block"]}>
           <Menu>
-            {!isAuth ? (
+            {!userData?.isAuth ? (
               <Link to="/login">
                 <MenuButton as={Button} colorScheme="blue">
                   Login
@@ -151,8 +161,8 @@ function MenuList1() {
 function MobileMenu() {
   const { colorMode, toggleColorMode } = useColorMode();
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.authReducer.isAuth);
-  const cartData = useSelector((state) => state.cartReducer);
+  const userData = useSelector((state) => state.authReducer);
+  const cartData = useSelector((state) => state.cartReducer.cart);
 
   const handleLogout = () => {
     dispatch(userLogoutActionFn());
@@ -160,6 +170,11 @@ function MobileMenu() {
   return (
     <MenuList>
       <MenuGroup title="Move to">
+        {userData?.user.role === "admin" && (
+          <Link to="/admindashboard">
+            <MenuItem>Dashboard</MenuItem>
+          </Link>
+        )}
         <Link to="/products">
           <MenuItem>Products</MenuItem>
         </Link>
@@ -172,7 +187,7 @@ function MobileMenu() {
       </MenuGroup>
       <MenuDivider />
       <MenuGroup title="Profile">
-        {isAuth ? (
+        {userData?.isAuth ? (
           <MenuItem onClick={handleLogout} color={"red"}>
             Logout
           </MenuItem>

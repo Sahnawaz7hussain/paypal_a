@@ -6,6 +6,7 @@ const initAuthData = {
   isAuth: isAuth,
   isLoading: false,
   isError: false,
+  user: isUser || {},
   error: {},
 };
 const authReducer = (oldState = initAuthData, action) => {
@@ -50,6 +51,7 @@ const authReducer = (oldState = initAuthData, action) => {
         isLoading: false,
         isError: false,
         isAuth: true,
+        user: payload,
         error: {},
       };
     case types.USER_LOGIN_FAILURE:
@@ -67,6 +69,7 @@ const authReducer = (oldState = initAuthData, action) => {
         isLoading: false,
         isError: false,
         isAuth: false,
+        user: {},
       };
     default:
       return oldState;

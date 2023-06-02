@@ -18,9 +18,9 @@ const Pricing = ({ cart }) => {
     setTotalPrice(newPrice);
   });
 
-  console.log("pricing: cart: ", cart, "  totalprice ;", totalPrice);
+  //console.log("pricing: cart: ", cart, "  totalprice ;", totalPrice);
   return (
-    <Stack w={["100%", "30%"]} border={"0px solid blue"}>
+    <Stack w={"100%"} border={"0px solid blue"}>
       <Heading size={"md"}>Summary</Heading>
       <Stack spacing={3} w={"100%"} border={"1px solid lightgray"} p={2}>
         <Flex>

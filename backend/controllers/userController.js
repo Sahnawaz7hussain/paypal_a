@@ -55,4 +55,34 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login };
+const getAllUser = async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json({ users });
+  } catch (err) {
+    res.status(500).json({
+      message: "Something went wrong please try again later",
+      err: err.message,
+    });
+  }
+};
+
+const updateUserRole = async (req, res) => {
+  const reqId = req.params.reqId;
+  try {
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { _id: reqId },
+      { $set: req.body },
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ user: updatedUser, message: "Role update successfully" });
+  } catch (err) {
+    res.status(500).json({
+      message: "Something went wrong please try again later",
+      err: err.message,
+    });
+  }
+};
+module.exports = { signup, login, getAllUser, updateUserRole };

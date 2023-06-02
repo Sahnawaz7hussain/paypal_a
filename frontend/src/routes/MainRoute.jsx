@@ -21,6 +21,8 @@ import Orders from "../pages/Orders";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import PrivateRoute from "./PrivateRoute";
+import AddAddress from "../pages/AddAddress";
+import AdminDashboard from "../pages/AdminDashboard";
 
 function PageNotFound() {
   return (
@@ -55,10 +57,26 @@ const MainRoute = () => {
         }
       />
       <Route
+        path="/address"
+        element={
+          <PrivateRoute>
+            <AddAddress />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/orders"
         element={
           <PrivateRoute>
             <Orders />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admindashboard"
+        element={
+          <PrivateRoute>
+            <AdminDashboard />
           </PrivateRoute>
         }
       />

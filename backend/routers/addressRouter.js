@@ -9,6 +9,6 @@ const addressRouter = express.Router();
 
 addressRouter.get("/get", getAddressOfUser);
 addressRouter.patch("/update/:addressId", updateAddressOfUser);
-addressRouter.get("/add", addNewAddress);
+addressRouter.post("/add", addNewAddress);
 
 module.exports = { addressRouter };

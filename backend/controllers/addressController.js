@@ -20,11 +20,10 @@ const addNewAddress = async (req, res) => {
 // GET/READ ADDRESS DATA OF A USER
 const getAddressOfUser = async (req, res) => {
   try {
-    const address = await AddressModel.find({ user: req.body.userId }).populate(
-      "user",
-      "name,email,role"
-    );
-    res.status(200).json({ message: "Request success", address });
+    const address = await AddressModel.findOne({
+      user: req.body.userId,
+    });
+    res.status(200).json({ address });
   } catch (err) {
     res
       .status(500)

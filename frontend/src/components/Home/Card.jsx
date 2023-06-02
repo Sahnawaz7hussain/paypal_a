@@ -1,7 +1,5 @@
 import {
   Box,
-  Center,
-  useColorModeValue,
   Heading,
   Text,
   Stack,
@@ -62,7 +60,7 @@ export default function Card({
           <Spacer />
           <Button
             onClick={() =>
-              isAuth ? () => handleOnClickAddToCart(_id) : navigate("/login")
+              isAuth ? handleOnClickAddToCart(_id) : navigate("/login")
             }
             colorScheme="blue"
           >
