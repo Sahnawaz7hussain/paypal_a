@@ -1,4 +1,5 @@
 # perfumate
+### Perfumate: Elegant ecommerce for branded perfumes. Built on MERN Stack, it offers a seamless shopping experience with captivating fragrances and robust functionalities.
 
 
 # User Section
