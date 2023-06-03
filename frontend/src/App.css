@@ -1,6 +1,7 @@
 .App {
   height: auto;
   width: 100%;
+  max-width: 1370px;
   padding: 0 5%;
   background-color: transparent;
 }
