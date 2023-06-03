@@ -1,6 +1,36 @@
 # perfumate
 ### Perfumate: Elegant ecommerce for branded perfumes. Built on MERN Stack, it offers a seamless shopping experience with captivating fragrances and robust functionalities.
 
+## 💻 Tech Stack:
+### Frontend
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Chakra ui](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)  ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)  
+
+### Backend
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) 
+ ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+  ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) 
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white) 
+### Deployed on
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
+## Features
+ - 🚀 Users
+   - Login and Signup User Account
+   - JWT( JSON WEB TOKEN) Authentication BcryptJs password Hashing
+   - Product Sorting Based on Price,and Brand
+   - Cart Add and Remove Items
+   - Cart Update Quantities
+   - Cart page for managing Cart
+   - Manage orders for details of all ordered item
+   - Address Management
+
+- 🚀 Admin Features
+  - All Cart Item Data
+  - All orders Data
+  - Orders Status Update
+  - All Users Data
+  - Cancel Order data
 
 # User Section
 ## Homepage (Hero images top `Brands` Best sellers `Products`)
