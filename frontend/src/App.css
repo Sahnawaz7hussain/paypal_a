@@ -5,15 +5,3 @@
   padding: 0 5%;
   background-color: transparent;
 }
-@media screen and (max-width: 840px) {
-  .App {
-    padding: 0 5%;
-    background-color: blue;
-  }
-}
-@media screen and (max-width: 400px) {
-  .App {
-    padding: 0 2%;
-    background-color: green;
-  }
-}
