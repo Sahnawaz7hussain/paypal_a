@@ -4,6 +4,7 @@ import HeroImg from "./components/Home/HeroImg";
 import MainRoute from "./routes/MainRoute";
 import Footer from "./components/Footer";
 //import "./App.css";
+// Root component 
 function App() {
   return (
     <Box className="App">
