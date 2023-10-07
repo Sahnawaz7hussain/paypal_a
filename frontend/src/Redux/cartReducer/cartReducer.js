@@ -2,7 +2,7 @@ import * as types from "./cartActionType";
 const initialCart = {
   isLoading: false,
   isError: false,
-  cart: [],
+  cart: {},
   err: "",
 };
 export const cartReducer = (oldState = initialCart, action) => {
@@ -13,7 +13,7 @@ export const cartReducer = (oldState = initialCart, action) => {
         ...oldState,
         isLoading: true,
         isError: false,
-        cart: [],
+        cart: {},
         err: "",
       };
     case types.GET_CART_SUCCESS:
@@ -29,7 +29,7 @@ export const cartReducer = (oldState = initialCart, action) => {
         ...oldState,
         isLoading: false,
         isError: true,
-        cart: [],
+        cart: {},
         err: payload,
       };
     // case types.POST_CART_REQUEST:

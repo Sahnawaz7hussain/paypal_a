@@ -23,6 +23,7 @@ import Signup from "../pages/Signup";
 import PrivateRoute from "./PrivateRoute";
 import AddAddress from "../pages/AddAddress";
 import AdminDashboard from "../pages/AdminDashboard";
+import Payment from "../pages/Payment";
 
 function PageNotFound() {
   return (
@@ -61,6 +62,14 @@ const MainRoute = () => {
         element={
           <PrivateRoute>
             <AddAddress />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         }
       />

@@ -163,7 +163,6 @@ const Cart = () => {
       });
   };
 
-  console.log("cart: ", cart);
   return (
     <>
       {isLoading ? (
@@ -218,7 +217,7 @@ const Cart = () => {
             )}
             <Button
               onClick={() =>
-                isAddress ? handleOnClickOrderRequest() : navigate("/address")
+                isAddress ? navigate("/payment") : navigate("/address")
               }
               colorScheme={"orange"}
             >
