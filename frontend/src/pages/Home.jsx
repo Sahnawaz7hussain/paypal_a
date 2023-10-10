@@ -99,8 +99,7 @@ const Home = () => {
       brand: "Nautica",
     },
     {
-      imgUrl:
-        "https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dwaec99bce/original/90_R500008-R050MLS_RNUL_20_EauFracheEDT50ml-EauFrache-versace-online-store_4_13.jpg",
+      imgUrl: "https://m.media-amazon.com/images/I/51kABSdV3VL._AC_UL320_.jpg",
       brand: "Versace",
     },
   ];
